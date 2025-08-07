@@ -1,0 +1,26 @@
+.header{
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    display: flex;
+    
+}
+.header-style{
+   
+    margin-left: 25px;
+    width: 60px;
+    height: 40px;
+    border-style: solid; 
+    border-radius: 12px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.headings{
+    padding-left: 600px;
+    display: flex;
+    
+    
+}
