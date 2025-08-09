@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Signin() {
+function Signin({ onLoginSuccess }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -10,6 +10,7 @@ function Signin() {
         // Simple check (replace with real authentication logic)
         if (username === 'admin' && password === 'password') {
             setMessage('Login successful!');
+            onLoginSuccess(); // Trigger App.js state change
         } else {
             setMessage('Invalid username or password');
         }

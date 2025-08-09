@@ -1,23 +1,20 @@
 import logo from '../logo.svg';
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../header.css';
 
 function Header() {
-   
-  
   return (
-    
-   <div className="header">
-    
+    <div className="header">
+      <Link to="/">
         <h1>Shiva Hospitals</h1>
-    
-        <div className='headings' >
-            <button className='header-style'>Home</button>
-            <button className='header-style'>about</button>
-            <button className='header-style'>services</button>
-            <button className='header-style'>contact</button>
-        </div>
-   </div>
+      </Link>
+      <div className='headings'>
+        <Link to="/" className='header-style' style={{textDecoration:'None'}}>Home</Link>
+        <Link to="/about" className='header-style'>About</Link>
+        <Link to="/services" className='header-style'>Services</Link>
+        <Link to="/contact" className='header-style'>Contact</Link>
+      </div>
+    </div>
   );
 }
 
