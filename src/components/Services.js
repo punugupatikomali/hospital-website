@@ -2,14 +2,13 @@ import logo from './logo.svg';
 import { useState } from 'react';
 import './header.css';
 
-function Header() {
+function Services() {
    
   
   return (
     
    <div className="header">
-    
-        <h1>Shiva Hospitals</h1>
+
     
         <div className='headings' >
             <button className='header-style'>Home</button>
@@ -21,4 +20,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Services;
