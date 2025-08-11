@@ -7,6 +7,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Services from './components/Services';
 import Home from './components/Home';
+import Signup from './components/Signup';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,7 +21,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
         {/* Redirect any unknown route to home */}

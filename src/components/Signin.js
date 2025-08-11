@@ -8,7 +8,8 @@ function Signin({ onLoginSuccess }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Simple check (replace with real authentication logic)
-        if (username === 'admin' && password === 'password') {
+        
+        if (username === 'admin' && password === 'pass') {
             setMessage('Login successful!');
             onLoginSuccess(); // Trigger App.js state change
         } else {
