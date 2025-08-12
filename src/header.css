@@ -6,6 +6,9 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 2px 8px rgba(58, 123, 213, 0.08);
+  position: sticky;      /* Added for sticky header */
+  top: 0;                /* Stick to the top */
+  z-index: 1000;         /* Ensure it stays above other content */
 }
 
 .header h1 {
