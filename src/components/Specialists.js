@@ -1,29 +1,61 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const specialistsList = [
+  'Dermatology',
+  'Cardiology',
+  'General Medicine',
+  'Gynaecology',
+  'ENT',
+  'Physiotherapy',
+  'Neurology',
+  'Urology',
+  'Plastic Surgery'
+];
 
 export default function Specialists() {
   const [doctors, setDoctors] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/docdata/all')
-      .then(res => {
-        setDoctors(res.data);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError('Error loading data');
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) return <div>Loading specialists...</div>;
-  if (error) return <div>{error}</div>;
+  const fetchDoctors = async (specialization) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await axios.get(`http://localhost:8080/docdata/all/${specialization}`);
+      setDoctors(res.data);
+    } catch (err) {
+      setError('Error loading data');
+    }
+    setLoading(false);
+  };
 
   return (
     <div>
       <h2>Our Specialists</h2>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '24px' }}>
+        {specialistsList.map((spec) => (
+          <button
+            key={spec}
+            onClick={() => fetchDoctors(spec)}
+            style={{
+              padding: '10px 18px',
+              borderRadius: '8px',
+              background: 'linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%)',
+              color: '#fff',
+              fontWeight: 500,
+              fontSize: '1rem',
+              border: 'none',
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(58, 123, 213, 0.08)'
+            }}
+          >
+            {spec}
+          </button>
+        ))}
+      </div>
+      {loading && <div>Loading specialists...</div>}
+      {error && <div style={{ color: 'red' }}>{error}</div>}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginTop: '16px' }}>
         {doctors.map((doctor) => (
           <div
@@ -52,5 +84,5 @@ export default function Specialists() {
         ))}
       </div>
     </div>
-  )
+  );
 }
