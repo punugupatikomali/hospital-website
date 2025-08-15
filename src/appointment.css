@@ -1,0 +1,69 @@
+.appointment-form-container {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 32px 28px;
+  background: linear-gradient(90deg, #f8fbff 0%, #e3f0ff 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(58, 123, 213, 0.10);
+}
+
+.appointment-heading {
+  color: #3a7bd5;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #b3d1f3;
+  font-size: 1rem;
+  background: #fff;
+  transition: border 0.2s;
+}
+
+.form-input:focus {
+  border: 1.5px solid #3a7bd5;
+  outline: none;
+}
+
+.appointment-btn {
+  background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.08rem;
+  padding: 12px 0;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(58, 123, 213, 0.08);
+  transition: background 0.2s;
+}
+
+.appointment-btn:hover {
+  background: #00d2ff;
+  color: #222;
+}
+
+.appointment-message {
+  margin-top: 18px;
+  text-align: center;
+  font-weight: 500;
+  color: #3a7bd5;
+}
