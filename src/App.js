@@ -10,6 +10,7 @@ import Home from './components/Home';
 import Signup from './components/Signup';
 import Footer from './components/Footer';
 import Specialists from './components/Specialists';
+import Apppointment from './components/Apppointment';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,8 +28,10 @@ function App() {
         <Route path="/contact" element={<Signup />} />
         <Route path="/services" element={<Services />} />
         <Route path="/specialists" element={<Specialists />} />
+        <Route path="/appointment" element={<Apppointment />} />
         {/* Redirect any unknown route to home */}
         <Route path="*" element={<Navigate to="/" />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>

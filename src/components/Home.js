@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Add this import
 import '../Home.css';
 
 const carouselCards = [
@@ -14,6 +15,7 @@ const carouselCards = [
 export default function Home() {
   const scrollRef = useRef(null);
   const [showArrows, setShowArrows] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate
 
   // Check for overflow on mount and on resize
   useEffect(() => {
@@ -37,6 +39,14 @@ export default function Home() {
     el.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
   };
 
+  // Handle card click
+  const handleCardClick = (title) => {
+    if (title === 'Book Appointment') {
+      navigate('/appointment');
+    }
+    // You can add more navigation for other cards if needed
+  };
+
   return (
     <div className="home-container">
       <h2 className="home-heading">Let's find a doctor</h2>
@@ -57,7 +67,12 @@ export default function Home() {
         )}
         <div className="carousel-scroll" ref={scrollRef}>
           {carouselCards.map((card, idx) => (
-            <div className="carousel-card" key={idx}>
+            <div
+              className="carousel-card"
+              key={idx}
+              onClick={() => handleCardClick(card.title)}
+              style={card.title === 'Book Appointment' ? { cursor: 'pointer' } : {}}
+            >
               <h3>{card.title}</h3>
             </div>
           ))}
