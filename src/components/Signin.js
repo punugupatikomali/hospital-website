@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../signin.css';
+import { Link } from 'react-router-dom';
 
 function Signin({ onLoginSuccess }) {
     const [username, setUsername] = useState('');
@@ -42,7 +43,7 @@ function Signin({ onLoginSuccess }) {
                     />
                 </div>
                 <button type="submit" className="signin-btn">Sign In</button>
-                New User? <a href="/signup">Create an account</a>
+                <Link to="/signup" >Sign Up</Link>
             </form>
             {message && (
                 <p className="signin-message" style={{ color: message === 'Login successful!' ? '#3a7bd5' : 'red' }}>

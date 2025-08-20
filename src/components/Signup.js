@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../Signup.css'; // Import the CSS file
+import { useNavigate } from 'react-router-dom';
+import '../Signup.css';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
@@ -8,6 +9,7 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +25,9 @@ export default function Signup() {
         password,
       });
       setSubmitted(true);
+      setTimeout(() => {
+        navigate('/');
+      }, 1200); // Redirect to Signin after 1.2 seconds
     } catch (err) {
       setError('Signup failed. Please try again.');
     }

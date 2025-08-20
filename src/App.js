@@ -14,9 +14,16 @@ import Apppointment from './components/Apppointment';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  
   if (!isLoggedIn) {
-    return <Signin onLoginSuccess={() => setIsLoggedIn(true)} />;
+    return(
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Signin onLoginSuccess={() => setIsLoggedIn(true)} />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </BrowserRouter>
+    ) 
   }
 
   return (
