@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../Signup.css'; // Import the CSS file
 
 export default function Signup() {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -10,9 +12,14 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
     try {
       await axios.post('http://localhost:8080/testdata/add', {
         username,
+        email,
         password,
       });
       setSubmitted(true);
@@ -22,10 +29,10 @@ export default function Signup() {
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="signup-container">
+      <h2 className="signup-title">Signup</h2>
+      <form onSubmit={handleSubmit} className="signup-form">
+        <div className="signup-field">
           <label>
             Username:&nbsp;
             <input
@@ -33,10 +40,23 @@ export default function Signup() {
               value={username}
               onChange={e => setUsername(e.target.value)}
               required
+              className="signup-input"
             />
           </label>
         </div>
-        <div style={{ marginTop: 10 }}>
+        <div className="signup-field">
+          <label>
+            Email:&nbsp;
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+              className="signup-input"
+            />
+          </label>
+        </div>
+        <div className="signup-field">
           <label>
             Password:&nbsp;
             <input
@@ -44,18 +64,19 @@ export default function Signup() {
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
+              className="signup-input"
             />
           </label>
         </div>
-        <button type="submit" style={{ marginTop: 15 }}>Sign Up</button>
+        <button type="submit" className="signup-button">Sign Up</button>
       </form>
       {submitted && (
-        <div style={{ color: 'green', marginTop: 15 }}>
+        <div className="signup-success">
           Signup successful for user: <strong>{username}</strong>
         </div>
       )}
       {error && (
-        <div style={{ color: 'red', marginTop: 15 }}>
+        <div className="signup-error">
           {error}
         </div>
       )}
