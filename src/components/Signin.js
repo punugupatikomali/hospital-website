@@ -1,20 +1,35 @@
 import React, { useState } from 'react';
 import '../signin.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Signin({ onLoginSuccess }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Simple check (replace with real authentication logic)
+        // Allow hardcoded admin login
         if (username === 'admin' && password === 'pass') {
             setMessage('Login successful!');
             onLoginSuccess();
-        } else {
-            setMessage('Invalid username or password');
+            return;
+        }
+        try {
+            const res = await axios.get('http://localhost:8080/testdata/all');
+            const users = res.data;
+            const matchedUser = users.find(
+                user => user.username === username && user.password === password
+            );
+            if (matchedUser) {
+                setMessage('Login successful!');
+                onLoginSuccess();
+            } else {
+                setMessage('Invalid username or password');
+            }
+        } catch (error) {
+            setMessage('Error connecting to server');
         }
     };
 
