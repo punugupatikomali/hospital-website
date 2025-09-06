@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 const specialistsList = [
   'Dermatology',
@@ -22,7 +23,7 @@ export default function Specialists() {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`http://localhost:8080/docdata/all/${specialization}`);
+      const res = await axios.get(`${API_BASE_URL}/docdata/all/${specialization}`);
       setDoctors(res.data);
     } catch (err) {
       setError('Error loading data');

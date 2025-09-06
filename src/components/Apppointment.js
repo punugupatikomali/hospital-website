@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import '../appointment.css';
 
 export default function Apppointment() {
@@ -23,7 +24,7 @@ export default function Apppointment() {
   useEffect(() => {
     async function fetchDoctors() {
       try {
-        const res = await axios.get('http://localhost:8080/docdata/all');
+        const res = await axios.get(`${API_BASE_URL}/docdata/all`);
         setDoctors(res.data);
       } catch (error) {
         setDoctors([]);
@@ -63,7 +64,7 @@ export default function Apppointment() {
 
   const isSlotAvailable = async () => {
   try {
-    const res = await axios.get(`http://localhost:8080/appointmentdata/all/${form.doctorname}`);
+    const res = await axios.get(`${API_BASE_URL}/appointmentdata/all/${form.doctorname}`);
     const appointments = res.data;
     // Check for overlap using filter
     console.log(appointments);
@@ -107,7 +108,7 @@ export default function Apppointment() {
 
     // If all validations pass, submit
     try {
-      const response = await fetch('http://localhost:8080/appointmentdata/add', {
+      const response = await fetch(`${API_BASE_URL}/appointmentdata/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

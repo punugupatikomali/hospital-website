@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import { useNavigate } from 'react-router-dom';
 import '../Signup.css';
 
@@ -19,7 +20,7 @@ export default function Signup() {
       return;
     }
     try {
-      await axios.post('http://localhost:8080/testdata/add', {
+      await axios.post(`${API_BASE_URL}/testdata/add`, {
         username,
         email,
         password,

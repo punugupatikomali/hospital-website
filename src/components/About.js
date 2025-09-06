@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 function About() {
    const [info, setInfo] = useState(null);
 
    const fetchInfo = async () => {
       try {
-         const response = await axios.get('http://localhost:8080/testdata/all');
+         const response = await axios.get(`${API_BASE_URL}/testdata/all`);
          console.log(response.data);
          setInfo(response.data);
       } catch (error) {

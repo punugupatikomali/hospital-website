@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../signin.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 function Signin({ onLoginSuccess }) {
     const [username, setUsername] = useState('');
@@ -17,7 +18,7 @@ function Signin({ onLoginSuccess }) {
             return;
         }
         try {
-            const res = await axios.get('http://localhost:8080/testdata/all');
+            const res = await axios.get(`${API_BASE_URL}/testdata/all`);
             const users = res.data;
             const matchedUser = users.find(
                 user => user.username === username && user.password === password
